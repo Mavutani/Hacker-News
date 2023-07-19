@@ -1,0 +1,19 @@
+image: php:8.0-windowsservercore-ltsc2019
+
+stages:
+  - test
+
+before_script:
+  - echo "Running before_script..."
+  - php -r "file_exists('.env') || copy('.env.example', '.env');"
+  - php artisan key:generate
+
+test:
+  stage: test
+  script:
+    - echo "Running tests..."
+    - choco install zip
+    - choco install unzip
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    - composer install --no-interaction --prefer-dist
+    - vendor/bin/phpunit

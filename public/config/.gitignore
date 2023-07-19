@@ -1,0 +1,19 @@
+# Files
+
+.DS_Store
+.ruby-version
+npm-debug.log
+test.html
+test.sass
+_config.local.yml
+
+# Folders
+
+.idea/
+.jekyll-cache
+.sass-cache
+_gh_pages
+_site
+dev
+node_modules
+test/output/
