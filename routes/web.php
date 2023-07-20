@@ -42,5 +42,8 @@ Route::get('/submit', [App\Http\Controllers\HackerController::class, 'submit']);
 //Profile Conroller
 Route::get('/id={name}', [App\Http\Controllers\ProfileController::class, 'index']);
 
-//Fetch Comments
+//Fetch Comments from api and save to db
 Route::get('/item/{sid}', [App\Http\Controllers\HackerController::class, 'comments']);
+
+//Fetch user from api and save
+Route::get('/user/{by}', [App\Http\Controllers\HackerController::class, 'user']);

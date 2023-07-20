@@ -105,6 +105,40 @@ class HackerController extends Controller
 
     }
 
+    public function user($by)
+    {
+        $client = new Client();
+        $updatesUrl = "https://hacker-news.firebaseio.com/v0/updates.json?print=pretty";
+
+        try {
+            $response = $client->get($updatesUrl);
+            $updatesData = json_decode($response->getBody(), true);
+
+            // Check if the 'profiles' key exists in the updates data
+            if (isset($updatesData['profiles'])) {
+                // Find the user ID associated with the provided username
+                $userId = array_search($by, array_column($updatesData['profiles'], 'id'));
+
+                if ($userId !== false) {
+                    // Fetch the user data using the user ID
+                    $userUrl = "https://hacker-news.firebaseio.com/v0/user/{$userId}.json?print=pretty";
+                    $response = $client->get($userUrl);
+                    $userData = json_decode($response->getBody(), true);
+
+                    // Do something with the user data (e.g., display it, store it in the database, etc.)
+
+                    // Example: Display the user data
+                    return response()->json($userData);
+                }
+            }
+
+            // If the username is not found in the updates data or 'profiles' key is missing
+            return response()->json(['error' => 'User not found'], 404);
+        } catch (\Exception $e) {
+            // Handle the exception (e.g., API error, etc.)
+            return response()->json(['error' => 'Failed to fetch user data'], 500);
+        }
+    }
     public function submit()
     {
         return View::make('news.submit');
