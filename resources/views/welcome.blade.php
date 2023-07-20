@@ -27,7 +27,7 @@
               <tr>
                 <td colspan="2"></td>
                 <td class="subtext">
-                  <span class="score" id="score_23201888">{{ $story->score }} points</span> by <a href="user?id=alokrai" class="hnuser">{{ $story->by }}</a> <span class="age"> | <span id="t{{$story->sid}}"></span></span> <span id="unv_23201888"></span> | <a href="hide?id=23201888&amp;goto=news">hide</a> | <a href="/item/{{ $story->sid}}">3&nbsp;comments</a>
+                  <span class="score" id="score_23201888">{{ $story->score }} points</span> by <a href="user?id=alokrai" class="hnuser">{{ $story->by }}</a> <span class="age"> | <span id="t{{$story->sid}}"></span></span> <span id="unv_23201888"></span> | <a href="hide?id=23201888&amp;goto=news">hide</a> | <a href="/item/{{ $story->sid}}">comments</a>
                   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
                   <script>
                     var unixTime = {{$story->time}};
